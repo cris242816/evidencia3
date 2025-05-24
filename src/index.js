@@ -1,14 +1,14 @@
 import React from 'react';
-import './App.css';
-import MyButton from './MyButton'; // 👈 Asegúrate de importar tu componente
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-function App() {
-    return (
-        <div className="App">
-            <h1>Welcome to my app</h1>
-            <MyButton />
-        </div>
-    );
-}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
+);
 
-export default App;
+reportWebVitals();
