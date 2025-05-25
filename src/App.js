@@ -2,12 +2,18 @@ import React, { useState } from 'react';
 import './App.css';
 import MyButton from './MyButton';
 import Profile from './Profile';
+import ContadorClicks from './ContadorClicks'; // ⬅️ Añadido
 
 function App() {
     const [showProfile, setShowProfile] = useState(true);
+    const [showCounter, setShowCounter] = useState(true); // ⬅️ Nuevo estado
 
     const toggleProfile = () => {
         setShowProfile(!showProfile);
+    };
+
+    const toggleCounter = () => {
+        setShowCounter(!showCounter);
     };
 
     return (
@@ -21,6 +27,12 @@ function App() {
             </button>
 
             {showProfile && <Profile />}
+
+            <button onClick={toggleCounter} style={{ marginTop: '20px' }}>
+                {showCounter ? 'Ocultar contador' : 'Mostrar contador'}
+            </button>
+
+            {showCounter && <ContadorClicks />}
         </div>
     );
 }
