@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 const users = [
     {
         id: 1,
@@ -19,33 +21,42 @@ const users = [
     },
 ];
 
-export default function Profile() {
-    function saludar(nombre) {
-        console.log(`Hola, soy ${nombre}`);
+function ProfileCard({ user }) {
+    const [likes, setLikes] = useState(0);
+
+    function handleLike() {
+        setLikes(likes + 1);
     }
 
     return (
+        <div key={user.id} style={{ marginBottom: '30px' }}>
+            <h3>{user.name}</h3>
+            <img
+                className="avatar"
+                src={user.imageUrl}
+                alt={'Foto de ' + user.name}
+                style={{
+                    width: user.imageSize,
+                    height: user.imageSize,
+                    borderRadius: '50%',
+                }}
+            />
+            <div style={{ marginTop: '10px' }}>
+                <button onClick={handleLike}>❤️ Like</button>
+                <span style={{ marginLeft: '10px' }}>Likes: {likes}</span>
+            </div>
+        </div>
+    );
+}
+
+export default function Profile() {
+    return (
         <div>
             <h2>Perfiles</h2>
-            {users.map((user) => (
-                <div key={user.id} style={{ marginBottom: '20px' }}>
-                    <h3>{user.name}</h3>
-                    <img
-                        className="avatar"
-                        src={user.imageUrl}
-                        alt={'Foto de ' + user.name}
-                        style={{
-                            width: user.imageSize,
-                            height: user.imageSize,
-                            borderRadius: '50%',
-                        }}
-                    />
-                    <br />
-                    <button onClick={() => saludar(user.name)}>
-                        Saludar a {user.name}
-                    </button>
-                </div>
+            {users.map(user => (
+                <ProfileCard key={user.id} user={user} />
             ))}
         </div>
     );
 }
+
