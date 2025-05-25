@@ -20,6 +20,10 @@ const users = [
 ];
 
 export default function Profile() {
+    function saludar(nombre) {
+        console.log(`Hola, soy ${nombre}`);
+    }
+
     return (
         <div>
             <h2>Perfiles</h2>
@@ -36,6 +40,10 @@ export default function Profile() {
                             borderRadius: '50%',
                         }}
                     />
+                    <br />
+                    <button onClick={() => saludar(user.name)}>
+                        Saludar a {user.name}
+                    </button>
                 </div>
             ))}
         </div>
